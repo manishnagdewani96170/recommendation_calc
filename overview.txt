@@ -1,0 +1,24 @@
+Here are the brief overview:
+
+I created two files(main.rb, get_recommended_score.rb) in given folder.Main file is used for getting argument as text file from command prompt during command run(ruby main.rb 'data.txt') and check if argument is valid as text file, then call get_recommended_score file to prepare recommended score.
+
+In get_recommended_score file, we have three methods mainly named manage_input_data, organize_level_score and calculate_level_score.
+
+Here is the purpose of manage_input_data function: 
+
+  It is used for collecting input argument from main.rb file and start iterating over given file and during iteration check:
+  - If line included empty string then move to next cycle.
+  - If line included 'EXIT' it would exit from loop.
+  - If line included 'recommends', then break string and store into 2d array.Reason for taking 2d array here is due to there would be more than one recommendation by any of entity and for managing multiple score it is easy to kept in 2d array because it does not check unique entity as key in hash.
+  - If line included 'accepts', then break string and store into hash.Reason for storing into hash with value array as we need unique key with entity's multiple recommended values, so here key would be entity and value would be array of number of recommended values.
+  
+Here is the purpose of organize_level_score function:
+  - It takes created hash from manage_input_data method and start work on calculating level score.
+  - It iterates over hash and pass value array to calculate_level_score method whose purpose is calculate score and sum of each values and prepare result hash for each member. 
+
+Here is the purpose of calculate_level_score function:
+  
+  - It takes recommended hash, value(passed as argument from organize_level_score function), last sum and count(depth/level) inside argument in method definition.
+  - The purpose of this method is take values of recommended hash from organize_level_score, iterate over it and check if value is available as key in recommended hash then calculate sum by level formula(1/2**k), increase count and follow this process till at last level. 
+  - We follow step 2 till all keys of recommended hash passed from organize_level_score get processed.
+  - At last we would pass all values to organize_level_score function and it would return calculated sum.
